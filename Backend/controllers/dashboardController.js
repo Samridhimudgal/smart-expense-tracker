@@ -71,6 +71,11 @@ res.json({
 
     totalExpenses: totalExpenses[0]?.total || 0,
 
+    last60DaysIncome: {
+        total: incomeLast60Days,
+        transactions: last60DaysIncomeTransactions,
+    },
+
     last30DaysExpenses: {
         total: expensesLast30Days,
         transactions: last30DaysExpenseTransactions,
