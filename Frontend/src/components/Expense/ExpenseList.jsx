@@ -17,8 +17,8 @@ const ExpenseList = ({transactions, onDelete, onDownload}) => {
         <div className='grid grid-cols-1 md:grid-cols-2'>
             {transactions?.map((expense) => (
                 <TransactionInfoCard
-                    key={expense.category}
-                    title={expense._id}
+                    key={expense._id}
+                    title={expense.category}
                     icon={expense.icon}
                     date={moment(expense.date).format("DD MMM YYYY")}
                     amount={expense.amount}

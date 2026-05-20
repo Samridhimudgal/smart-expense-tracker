@@ -29,13 +29,25 @@ export const addThousandsSeparator = (num) => {
     : formattedInteger;
 };
 
-export const prepareExpenseBarChartData = (data=[]) => {
-    const chartData = data.map((item) => ({
-        category: item?.category,
-        amount: item?.amount,
-    }));
+export const prepareExpenseBarChartData = (data = []) => {
 
-    return chartData;
+    const groupedData = {};
+
+    data.forEach((item) => {
+
+        const category = item?.category || "Other";
+
+        if (!groupedData[category]) {
+            groupedData[category] = 0;
+        }
+
+        groupedData[category] += Number(item?.amount) || 0;
+    });
+
+    return Object.keys(groupedData).map((key) => ({
+        name: key,
+        amount: groupedData[key],
+    }));
 };
 
 export const prepareIncomeBarChartData = (data = []) => {

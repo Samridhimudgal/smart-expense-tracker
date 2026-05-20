@@ -4,6 +4,13 @@ import {
     LuWalletMinimal,
     LuLogOut,
 } from "react-icons/lu";
+import { 
+  HiOutlineViewGrid,
+  HiOutlineCurrencyDollar,
+  HiOutlineCreditCard,
+  HiOutlineLightBulb,
+  HiOutlineLogout
+} from "react-icons/hi";
 
 export const SIDE_MENU_DATA = [
     {
@@ -25,9 +32,15 @@ export const SIDE_MENU_DATA = [
         path: "/expense",
     },
     {
+    label: "AI Insights",
+    path: "/ai-insights",
+    icon: HiOutlineLightBulb,
+    },
+    {
         id: "06",
         label: "Logout",
         icon: LuLogOut,
         path: "/logout",
     },
+    
 ];

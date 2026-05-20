@@ -6,10 +6,19 @@ const COLORS = ["#875CF5", "#FA2C37", "#FF6900"]
 const FinanceOverview = ({totalBalance, totalIncome, totalExpense}) => {
 
     const balanceData = [
-        {name: "Total Balance", amount: totalBalance},
-        {name: "Total Income", amount: totalIncome},
-        {name: "Total Expenses", amount: totalExpense},
-    ];
+  {
+    name: 'Balance',
+    amount: Number(totalBalance || 0),
+  },
+  {
+    name: 'Expense',
+    amount: Number(totalExpense || 0),
+  },
+  {
+    name: 'Income',
+    amount: Number(totalIncome || 0),
+  },
+];
 
     const formattedBalance = totalBalance < 0
         ? `-₹${addThousandsSeparator(Math.abs(totalBalance))}`

@@ -16,6 +16,8 @@ import ExpenseTransactions from '../../../components/Dashboard/ExpenseTransactio
 import Last30DaysExpenses from '../../../components/Dashboard/Last30DaysExpenses';
 import RecentIncomeWithChart from '../../../components/Dashboard/RecentIncomeWithChart';
 import RecentIncome from '../../../components/Dashboard/RecentIncome';
+import AIInsights from '../../../components/Dashboard/AIInsights';
+import { getAIInsights } from '../../../services/aiService';
 
 const Home = () => {
   useUserAuth();
@@ -24,6 +26,7 @@ const Home = () => {
 
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [insights, setInsights] = useState([]);
 
   const fetchDashboardData = async () => {
     if(loading) return;
@@ -45,12 +48,24 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    fetchDashboardData();
-    return () => {
+  const fetchAIInsights = async () => {
+  try {
 
-    }
-  }, [])
+    const data = await getAIInsights();
+
+    console.log(data);
+
+    setInsights(data);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+ useEffect(() => {
+  fetchDashboardData();
+  fetchAIInsights();
+}, []);
 
   return (
     <DashboardLayout activeMenu="Dashboard">
@@ -102,10 +117,12 @@ const Home = () => {
           totalIncome={dashboardData?.totalIncome || 0}
         />
 
-        <RecentIncome>
+       <RecentIncome
           transactions={dashboardData?.last60DaysIncome?.transactions || []}
-          onSeeMore={()=> navigate("/income")}
-        </RecentIncome>
+          onSeeMore={() => navigate("/income")}
+        />
+
+        <AIInsights insights={insights} />
        </div>
       </div>
     </DashboardLayout>  

@@ -12,6 +12,7 @@ import Income from "./pages/Auth/dashboard/Income";
 import Expense from "./pages/Auth/dashboard/Expense";
 import UserProvider from './context/userContext';
 import { Toaster } from "react-hot-toast";
+import AIInsights from './components/Dashboard/AIInsights';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/dashboard" exact element={<Home />} />
             <Route path="/income" exact element={<Income />} />
             <Route path="/expense" exact element={<Expense />} />
+            <Route path="/ai-insights" element={<AIInsights />} />
           </Routes>
         </Router>
       </div>
